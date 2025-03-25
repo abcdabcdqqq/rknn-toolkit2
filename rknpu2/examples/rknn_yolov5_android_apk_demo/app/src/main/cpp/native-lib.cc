@@ -12,6 +12,14 @@
 #include "rga/rga.h"
 #include "object_tracker/track_link.h"
 
+#include "AndroidClog.h"
+#include "LibTestCpp.h"
+
+#include <memory>
+
+// 方法一：使用 std 命名空间
+using namespace std;
+
 static char* jstringToChar(JNIEnv* env, jstring jstr) {
     char* rtn = NULL;
     jclass clsstring = env->FindClass("java/lang/String");
@@ -35,7 +43,7 @@ JNIEXPORT jint JNICALL Java_com_rockchip_gpadc_demo_yolo_InferenceWrapper_navite
   (JNIEnv *env, jobject obj, jint im_height, jint im_width, jint im_channel,
    jstring model_path)
 {
-	char *model_path_p = jstringToChar(env, model_path);
+    char *model_path_p = jstringToChar(env, model_path);
 	return create(im_height, im_width, im_channel, model_path_p);
 }
 
@@ -197,4 +205,25 @@ Java_com_rockchip_gpadc_demo_rga_RGA_color_1convert_1and_1flip(JNIEnv *env, jcla
 	// env->ReleaseByteArrayElements(dst, dst_buf, 0);
 
 	return ret;
+}
+
+
+
+
+
+extern "C"
+JNIEXPORT jint JNICALL Java_com_rockchip_gpadc_demo_yolo_InferenceWrapper_naviteTest
+        (JNIEnv *env, jobject obj)
+{
+    int  a = 100;
+    int b=1000;
+
+    LibTestCpp *testCpp = new LibTestCpp();
+    int  c  =  testCpp->add(a,b);
+    LOGD("add ======= 111result = %d", c);
+    delete testCpp;
+
+    std::shared_ptr<LibTestCpp> demo1 = std::make_shared<LibTestCpp>();
+    LOGD("sub ======= 111result = %d", demo1->sub(b,a));
+    return 1;
 }

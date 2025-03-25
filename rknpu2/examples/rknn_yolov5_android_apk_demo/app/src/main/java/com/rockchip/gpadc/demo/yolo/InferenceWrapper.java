@@ -132,4 +132,18 @@ public class InferenceWrapper {
     private native int native_post_process(byte[] grid0Out, byte[] grid1Out, byte[] grid2Out,
                                            int[] ids, float[] scores, float[] boxes);
 
+
+
+    ///================
+    ///
+    /// cidi
+
+
+    public int NativeTest(){
+        return naviteTest();
+    }
+
+    private native int naviteTest();
+
+
 }

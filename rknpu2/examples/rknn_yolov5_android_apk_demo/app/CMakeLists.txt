@@ -13,6 +13,26 @@ cmake_minimum_required(VERSION 3.4.1)
 # include rga.
 include_directories(src/main/cpp/rga)
 
+set(cppDir ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp)
+set(cidiRootDir ${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/cidi)
+
+
+include_directories(${cidiRootDir}/utils)
+include_directories(${cidiRootDir}/mytestdemo)
+
+
+aux_source_directory(${cidiRootDir}/mytestdemo MydemoSrc)
+
+
+
+add_library( # Sets the name of the library.
+        mytestdemo
+
+        # Sets the library as a shared library.
+        SHARED
+        ${MydemoSrc}
+)
+
 add_library( # Sets the name of the library.
              rknn4j
 
@@ -27,6 +47,7 @@ add_library( # Sets the name of the library.
              src/main/cpp/object_tracker/track_link.cc
              src/main/cpp/object_tracker/objects_tracker.cc
              src/main/cpp/object_tracker/objects_update.cc
+             ${MydemoSrc}
              )
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -53,4 +74,6 @@ target_link_libraries( # Specifies the target library.
                        # included in the NDK.
                        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/librknnrt.so
                        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/librga.so
-                       ${log-lib} )
+                       ${log-lib}
+                       ${mytestdemo}
+)

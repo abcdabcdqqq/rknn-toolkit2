@@ -145,8 +145,28 @@ public class CameraPreviewActivity extends Activity implements Camera.PreviewCal
             e.printStackTrace();
             System.exit(1);
         }
-
+        CIDIDemoTest();
     }
+
+
+    private void CIDIDemoTest() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                mInferenceWrapper.NativeTest();
+
+            }
+        }).start();
+    }
+
+
 
     @Override
     protected void onDestroy() {
