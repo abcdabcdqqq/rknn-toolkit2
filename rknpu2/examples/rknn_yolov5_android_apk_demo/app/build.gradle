@@ -26,6 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
@@ -41,7 +42,8 @@ android {
         main {
             // The libs directory contains prebuilt libraries that are used by the
             // app's library defined in CMakeLists.txt via an IMPORTED target.
-            // jniLibs.srcDirs = ['libs']
+             jniLibs.srcDirs = ['libs']
+//            jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }
 }
