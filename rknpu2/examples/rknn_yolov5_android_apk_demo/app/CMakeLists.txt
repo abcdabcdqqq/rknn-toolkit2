@@ -25,11 +25,20 @@ aux_source_directory(${cidiRootDir}/mytestdemo MydemoSrc)
 
 
 
+#add_library( # Sets the name of the library.
+#        mytestdemo
+#
+#        # Sets the library as a shared library.
+#        SHARED
+#        ${MydemoSrc}
+#)
+
+
 add_library( # Sets the name of the library.
         mytestdemo
 
-        # Sets the library as a shared library.
-        SHARED
+        # Sets the library as a static library.
+        STATIC
         ${MydemoSrc}
 )
 

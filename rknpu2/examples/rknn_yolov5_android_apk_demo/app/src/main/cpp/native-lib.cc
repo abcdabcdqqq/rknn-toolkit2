@@ -224,6 +224,6 @@ JNIEXPORT jint JNICALL Java_com_rockchip_gpadc_demo_yolo_InferenceWrapper_navite
     delete testCpp;
 
     std::shared_ptr<LibTestCpp> demo1 = std::make_shared<LibTestCpp>();
-    LOGD("sub ======= 111result = %d", demo1->sub(b,a));
+    LOGD("sub  a  aaa ======= 111result = %d", demo1->sub(b,a));
     return 1;
 }
